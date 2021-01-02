@@ -14,6 +14,7 @@ namespace mastermind
             Console.WriteLine("You will have 10 chances to guess the answer.");
             Console.WriteLine("I will give you a - (minus) symbol for every digit that is correct, but in the wrong position.");
             Console.WriteLine("I will give you a + (plus) symbol for every digit that is correct and in the correct position.");
+            Console.WriteLine("Enter exactly 4 digits for each guess. Do not include spaces or commas.");
             Console.WriteLine("\nGood Luck!\n");
 
             Game game = new Game();
@@ -22,6 +23,16 @@ namespace mastermind
             {
                 Console.Write(digit + " ");
             }
+            Console.WriteLine();
+
+            Console.Write("Guess #1: ");
+            game.ConvertInputToStringArray(Console.ReadLine());
+            foreach (string item in game.InputStringArray)
+            {
+                Console.WriteLine(item);
+            }
+
+            Console.ReadKey();
         }
     }
 }
