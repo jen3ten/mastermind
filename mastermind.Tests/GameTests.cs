@@ -28,6 +28,14 @@ namespace mastermind.Tests
         }
 
         [Fact]
+        public void getRandomDigit_Should_Return_Integer()
+        {
+            int digit = sut.getRandomDigit();
+
+            Assert.IsType<int>(digit);
+        }
+
+        [Fact]
         public void generateRandomAnswer_Should_Create_4_Digit_Answer()
         {
             sut.generateRandomAnswer();
