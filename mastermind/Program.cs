@@ -27,11 +27,7 @@ namespace mastermind
 
             Console.Write("Guess #1: ");
             game.ConvertInputToStringArray(Console.ReadLine());
-            foreach (string item in game.InputStringArray)
-            {
-                Console.WriteLine(item);
-            }
-
+            Console.WriteLine(game.InputIs4Digits());
             Console.ReadKey();
         }
     }
