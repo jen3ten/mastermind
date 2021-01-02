@@ -8,18 +8,23 @@ namespace mastermind
         public int[] Guess { get; set; } = new int[4];
 
 
-        public int getRandomDigit()
+        public int GetRandomDigit()
         {
             Random random = new Random();
             return random.Next(1, 7);
         }
 
-        public void generateRandomAnswer()
+        public void GenerateRandomAnswer()
         {
             for(int i = 0; i < 4; i++)
             {
-                Answer[i] = getRandomDigit();
+                Answer[i] = GetRandomDigit();
             }
+        }
+
+        public void ConvertInputToGuess()
+        {
+
         }
     }
 }

@@ -17,7 +17,7 @@ namespace mastermind
             Console.WriteLine("\nGood Luck!\n");
 
             Game game = new Game();
-            game.generateRandomAnswer();
+            game.GenerateRandomAnswer();
             foreach(int digit in game.Answer)
             {
                 Console.Write(digit + " ");

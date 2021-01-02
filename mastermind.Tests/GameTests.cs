@@ -30,36 +30,36 @@ namespace mastermind.Tests
         }
 
         [Fact]
-        public void getRandomDigit_Should_Return_Integer()
+        public void GetRandomDigit_Should_Return_Integer()
         {
-            int digit = sut.getRandomDigit();
+            int digit = sut.GetRandomDigit();
 
             Assert.IsType<int>(digit);
         }
 
         [Fact]
-        public void getRandomDigit_Should_Return_Integer_Between_1_And_6()
+        public void GetRandomDigit_Should_Return_Integer_Between_1_And_6()
         {
             for(int i = 0; i < 50; i++)
             {
-                int digit = sut.getRandomDigit();
+                int digit = sut.GetRandomDigit();
 
                 Assert.InRange(digit, 1, 6);
             }
         }
 
         [Fact]
-        public void generateRandomAnswer_Should_Create_4_Digit_Answer()
+        public void GenerateRandomAnswer_Should_Create_4_Digit_Answer()
         {
-            sut.generateRandomAnswer();
+            sut.GenerateRandomAnswer();
 
             Assert.Equal(4, sut.Answer.Length);
         }
 
         [Fact]
-        public void generateRandomAnswer_Should_Create_Answer_With_Digits_Between_1_And_6()
+        public void GenerateRandomAnswer_Should_Create_Answer_With_Digits_Between_1_And_6()
         {
-            sut.generateRandomAnswer();
+            sut.GenerateRandomAnswer();
 
             Assert.All(sut.Answer, digit => Assert.InRange(digit, 1, 6));
         }
@@ -81,5 +81,12 @@ namespace mastermind.Tests
             Assert.IsType<int[]>(sut.Guess);
         }
 
+        [Fact]
+        public void ConvertInputToGuess_Should_Convert_String_To_Int_Array()
+        {
+            sut.ConvertInputToGuess();
+
+            Assert.All(sut.Guess, digit => Assert.NotEqual(0, digit));
+        }
     }
 }
