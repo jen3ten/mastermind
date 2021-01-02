@@ -25,6 +25,12 @@ namespace mastermind
 
         public void ConvertInputToStringArray(string input)
         {
+            char[] inputCharacterArray = input.ToCharArray();
+            InputStringArray = new string[input.Length];
+            for(int i = 0; i < input.Length; i++)
+            {
+                InputStringArray[i] = inputCharacterArray[i].ToString();
+            }
         }
     }
 }
