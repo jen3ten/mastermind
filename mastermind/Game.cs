@@ -32,5 +32,10 @@ namespace mastermind
                 InputStringArray[i] = inputCharacterArray[i].ToString();
             }
         }
+
+        public bool InputIs4Digits()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

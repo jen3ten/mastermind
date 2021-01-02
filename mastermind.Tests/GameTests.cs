@@ -95,5 +95,13 @@ namespace mastermind.Tests
 
             Assert.IsType<string[]>(sut.InputStringArray);
         }
+
+        [Fact]
+        public void InputIs4Digits_Should_Return_True_If_InputStringArray_Has_Length_of_4()
+        {
+            sut.ConvertInputToStringArray("1234");
+
+            Assert.True(sut.InputIs4Digits());
+        }
     }
 }
