@@ -9,7 +9,7 @@ namespace mastermind
         public int getRandomDigit()
         {
             Random random = new Random();
-            return random.Next();
+            return random.Next(1, 7);
         }
 
         public void generateRandomAnswer()
