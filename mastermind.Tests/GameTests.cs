@@ -130,5 +130,17 @@ namespace mastermind.Tests
             Assert.True(sut.InputDigitsAreIntegers());
         }
 
+        [Theory]
+        [InlineData("string")]
+        [InlineData("1 2 3 4")]
+        [InlineData("This is a string!")]
+        [InlineData("1,2,3,4")]
+        [InlineData("123a")]
+        public void InputDigitsAreIntegers_Should_Return_False_If_Any_InputStringArray_Elements_Can_Not_Be_Converted_To_Int(string input)
+        {
+            sut.ConvertInputToStringArray(input);
+
+            Assert.False(sut.InputDigitsAreIntegers());
+        }
     }
 }
