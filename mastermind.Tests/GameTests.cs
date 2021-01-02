@@ -28,9 +28,9 @@ namespace mastermind.Tests
         }
 
         [Fact]
-        public void createRandomAnswer_Should_Create_4_Digit_Answer()
+        public void generateRandomAnswer_Should_Create_4_Digit_Answer()
         {
-            sut.createRandomAnswer();
+            sut.generateRandomAnswer();
 
             Assert.Equal(4, sut.Answer.Length);
         }
