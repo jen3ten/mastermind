@@ -63,5 +63,16 @@ namespace mastermind.Tests
 
             Assert.All(sut.Answer, digit => Assert.InRange(digit, 1, 6));
         }
+
+        // Guess Tests
+        [Fact]
+        public void Game_Can_Set_4_Digit_Guess_Property()
+        {
+            sut.Guess = new int[] { 1, 2, 3, 4 };
+
+            Assert.True(sut.Guess != null);
+        }
+
+
     }
 }
