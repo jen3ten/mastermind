@@ -19,15 +19,13 @@ namespace mastermind
 
             Game game = new Game();
             game.GenerateRandomAnswer();
-            foreach(int digit in game.Answer)
-            {
-                Console.Write(digit + " ");
-            }
-            Console.WriteLine();
 
-            Console.Write("Guess #1: ");
-            game.ConvertInputToStringArray(Console.ReadLine());
-            Console.WriteLine(game.CheckValidityOfInput());
+            int guessNumber = 1;
+            do
+            {
+                Console.Write($"Guess #{guessNumber}: ");
+                game.ConvertInputToStringArray(Console.ReadLine());
+            } while (!game.CheckValidityOfInput());
             Console.ReadKey();
         }
     }

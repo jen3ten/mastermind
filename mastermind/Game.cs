@@ -85,13 +85,13 @@ namespace mastermind
 
             if (!InputDigitsInRange())
             {
-                message += "The input contains digits that are not integers between 1-6.";
+                message += "The input contains digits that are not integers between 1-6. ";
                 validity = false;
             }
 
             if (message != "")
             {
-                Console.WriteLine(message);
+                Console.WriteLine("Input ERROR: " + message + "Please enter a valid guess.");
             }
 
             return validity;
