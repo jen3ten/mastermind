@@ -8,7 +8,8 @@ namespace mastermind
 
         public int getRandomDigit()
         {
-            throw new NotImplementedException();
+            Random random = new Random();
+            return random.Next();
         }
 
         public void generateRandomAnswer()
