@@ -11,6 +11,8 @@ namespace mastermind.Tests
             sut = new Game();
         }
 
+
+        // Answer Tests
         [Fact]
         public void Game_Can_Set_4_Digit_Answer_Property()
         {
@@ -52,6 +54,14 @@ namespace mastermind.Tests
             sut.generateRandomAnswer();
 
             Assert.Equal(4, sut.Answer.Length);
+        }
+
+        [Fact]
+        public void generateRandomAnswer_Should_Create_Answer_With_Digits_Between_1_And_6()
+        {
+            sut.generateRandomAnswer();
+
+            Assert.All(sut.Answer, digit => Assert.InRange(digit, 1, 6));
         }
     }
 }
