@@ -22,7 +22,7 @@ namespace mastermind
             }
         }
 
-        public void ConvertInputToGuess()
+        public void ConvertInputToGuess(string input)
         {
 
         }
