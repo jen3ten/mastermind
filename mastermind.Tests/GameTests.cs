@@ -142,5 +142,18 @@ namespace mastermind.Tests
 
             Assert.False(sut.InputDigitsAreIntegers());
         }
+
+        [Theory]
+        [InlineData("5555")]
+        [InlineData("1234")]
+        [InlineData("3344")]
+        [InlineData("123456")]
+        public void InputDigitsInRange_Should_Return_True_If_InputStringArray_Elements_Are_Integers_Between_1_And_6(string input)
+        {
+            sut.ConvertInputToStringArray(input);
+
+            Assert.True(sut.InputDigitsInRange());
+        }
+
     }
 }

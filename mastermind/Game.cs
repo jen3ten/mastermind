@@ -50,5 +50,10 @@ namespace mastermind
             }
             return true;
         }
+
+        public bool InputDigitsInRange()
+        {
+            return false;
+        }
     }
 }
