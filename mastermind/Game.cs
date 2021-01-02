@@ -6,6 +6,7 @@ namespace mastermind
     {
         public int[] Answer { get; set; } = new int[4];
         public int[] Guess { get; set; } = new int[4];
+        public string[] InputStringArray { get; set; }
 
 
         public int GetRandomDigit()
@@ -22,9 +23,8 @@ namespace mastermind
             }
         }
 
-        public void ConvertInputToGuess(string input)
+        public void ConvertInputToStringArray(string input)
         {
-
         }
     }
 }

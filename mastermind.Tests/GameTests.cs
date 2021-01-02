@@ -82,12 +82,12 @@ namespace mastermind.Tests
         }
 
         [Fact]
-        public void ConvertInputToGuess_Should_Convert_String_To_Int_Array()
+        public void ConvertInputToStringArray_Should_Convert_String_To_String_Array()
         {
             string userInput = "5555";
-            sut.ConvertInputToGuess(userInput);
+            sut.ConvertInputToStringArray(userInput);
 
-            Assert.All(sut.Guess, digit => Assert.Equal(5, digit));
+            Assert.All(sut.InputStringArray, item => Assert.Equal("5", item));
         }
     }
 }
