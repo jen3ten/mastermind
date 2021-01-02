@@ -106,5 +106,16 @@ namespace mastermind.Tests
 
             Assert.True(sut.InputIs4Digits());
         }
+
+        [Theory]
+        [InlineData("5555")]
+        [InlineData("7890")]
+        [InlineData("aaaa")]
+        public void InputIs4Digits_Should_Return_False_If_InputStringArray_Does_Not_Have_Length_of_4(string input)
+        {
+            sut.ConvertInputToStringArray(input);
+
+            Assert.False(sut.InputIs4Digits());
+        }
     }
 }
