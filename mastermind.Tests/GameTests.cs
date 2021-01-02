@@ -108,9 +108,10 @@ namespace mastermind.Tests
         }
 
         [Theory]
-        [InlineData("5555")]
-        [InlineData("7890")]
-        [InlineData("aaaa")]
+        [InlineData("string")]
+        [InlineData("1 2 3 4")]
+        [InlineData("This is a string!")]
+        [InlineData("1,2,3,4")]
         public void InputIs4Digits_Should_Return_False_If_InputStringArray_Does_Not_Have_Length_of_4(string input)
         {
             sut.ConvertInputToStringArray(input);
