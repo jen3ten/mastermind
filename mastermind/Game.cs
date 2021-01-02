@@ -53,7 +53,16 @@ namespace mastermind
 
         public bool InputDigitsInRange()
         {
-            return false;
+            int number;
+            foreach (string digit in InputStringArray)
+            {
+                Int32.TryParse(digit, out number);
+                if (number < 1 || number > 6)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }
