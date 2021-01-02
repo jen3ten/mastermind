@@ -38,9 +38,12 @@ namespace mastermind.Tests
         [Fact]
         public void getRandomDigit_Should_Return_Integer_Between_1_And_6()
         {
-            int digit = sut.getRandomDigit();
+            for(int i = 0; i < 50; i++)
+            {
+                int digit = sut.getRandomDigit();
 
-            Assert.InRange(digit, 1, 6);
+                Assert.InRange(digit, 1, 6);
+            }
         }
 
         [Fact]
