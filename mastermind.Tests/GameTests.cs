@@ -73,6 +73,13 @@ namespace mastermind.Tests
             Assert.True(sut.Guess != null);
         }
 
+        [Fact]
+        public void Guess_Is_Integer_Array()
+        {
+            sut.Guess = new int[] { 1, 2, 3, 4 };
+
+            Assert.IsType<int[]>(sut.Guess);
+        }
 
     }
 }
