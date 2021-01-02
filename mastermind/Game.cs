@@ -35,7 +35,7 @@ namespace mastermind
 
         public bool InputIs4Digits()
         {
-            throw new NotImplementedException();
+            return InputStringArray.Length == 4;
         }
     }
 }
