@@ -15,6 +15,13 @@ namespace mastermind
             Console.WriteLine("I will give you a - (minus) symbol for every digit that is correct, but in the wrong position.");
             Console.WriteLine("I will give you a + (plus) symbol for every digit that is correct and in the correct position.");
             Console.WriteLine("\nGood Luck!\n");
+
+            Game game = new Game();
+            game.generateRandomAnswer();
+            foreach(int digit in game.Answer)
+            {
+                Console.Write(digit + " ");
+            }
         }
     }
 }
