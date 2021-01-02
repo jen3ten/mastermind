@@ -37,5 +37,10 @@ namespace mastermind
         {
             return InputStringArray.Length == 4;
         }
+
+        public bool InputDigitsAreIntegers()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

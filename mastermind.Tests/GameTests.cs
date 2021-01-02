@@ -118,5 +118,17 @@ namespace mastermind.Tests
 
             Assert.False(sut.InputIs4Digits());
         }
+
+        [Theory]
+        [InlineData("5555")]
+        [InlineData("7890")]
+        [InlineData("123456789")]
+        public void InputDigitsAreIntegers_Should_Return_True_If_InputStringArray_Elements_Can_Be_Converted_To_Int(string input)
+        {
+            sut.ConvertInputToStringArray(input);
+
+            Assert.True(sut.InputDigitsAreIntegers());
+        }
+
     }
 }
