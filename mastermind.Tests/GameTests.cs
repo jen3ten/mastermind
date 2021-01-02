@@ -81,11 +81,17 @@ namespace mastermind.Tests
             Assert.IsType<int[]>(sut.Guess);
         }
 
-        [Fact]
-        public void ConvertInputToStringArray_Should_Convert_String_To_String_Array()
+        [Theory]
+        [InlineData("5555")]
+        [InlineData("7890")]
+        [InlineData("aaaa")]
+        [InlineData("string")]
+        [InlineData("1 2 3 4")]
+        [InlineData("This is a string!")]
+        [InlineData("1,2,3,4")]
+        public void ConvertInputToStringArray_Should_Convert_String_To_String_Array(string input)
         {
-            string userInput = "5555";
-            sut.ConvertInputToStringArray(userInput);
+            sut.ConvertInputToStringArray(input);
 
             Assert.IsType<string[]>(sut.InputStringArray);
         }
