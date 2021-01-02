@@ -148,7 +148,10 @@ namespace mastermind.Tests
         [InlineData("1234")]
         [InlineData("3344")]
         [InlineData("123456")]
-        public void InputDigitsInRange_Should_Return_True_If_InputStringArray_Elements_Are_Digits_Between_1_And_6(string input)
+        [InlineData("123a")]
+        [InlineData("1 2 3 4")]
+        [InlineData("1,2,3,4")]
+        public void InputDigitsInRange_Should_Return_True_If_InputStringArray_Digits_Are_Between_1_And_6(string input)
         {
             sut.ConvertInputToStringArray(input);
 
@@ -162,8 +165,7 @@ namespace mastermind.Tests
         [InlineData("123456789")]
         [InlineData("7777")]
         [InlineData("0000")]
-        [InlineData("123a")]
-        public void InputDigitsInRange_Should_Return_False_If_InputStringArray_Elements_Are_Not_Digits_Between_1_And_6(string input)
+        public void InputDigitsInRange_Should_Return_False_If_InputStringArray_Digits_Are_Not_Between_1_And_6(string input)
         {
             sut.ConvertInputToStringArray(input);
 

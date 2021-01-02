@@ -54,15 +54,47 @@ namespace mastermind
         public bool InputDigitsInRange()
         {
             int number;
+            bool success;
             foreach (string digit in InputStringArray)
             {
-                Int32.TryParse(digit, out number);
-                if (number < 1 || number > 6)
+                success = Int32.TryParse(digit, out number);
+                if (success && (number < 1 || number > 6))
                 {
                     return false;
                 }
             }
             return true;
+        }
+
+        public bool CheckValidityOfInput()
+        {
+            string message = "";
+            bool validity = true;
+
+            if (!InputIs4Digits())
+            {
+                message += "The input does not contain exactly 4 digits. ";
+                validity = false;
+            }
+
+            if (!InputDigitsAreIntegers())
+            {
+                message += "The input consists of digits that are not integers. ";
+                validity = false;
+            }
+
+            if (!InputDigitsInRange())
+            {
+                message += "The input contains digits that are not integers between 1-6.";
+                validity = false;
+            }
+
+            if (message != "")
+            {
+                Console.WriteLine(message);
+            }
+
+            return validity;
         }
     }
 }
