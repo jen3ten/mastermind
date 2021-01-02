@@ -18,5 +18,13 @@ namespace mastermind.Tests
 
             Assert.True(sut.Answer != null);
         }
+
+        [Fact]
+        public void Answer_Is_Integer_Array()
+        {
+            sut.Answer = new int[] { 1, 2, 3, 4 };
+
+            Assert.IsType<int[]>(sut.Answer);
+        }
     }
 }
