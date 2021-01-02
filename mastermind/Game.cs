@@ -14,6 +14,10 @@ namespace mastermind
 
         public void generateRandomAnswer()
         {
+            for(int i = 0; i < 4; i++)
+            {
+                Answer[i] = getRandomDigit();
+            }
         }
     }
 }
