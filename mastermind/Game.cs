@@ -40,7 +40,15 @@ namespace mastermind
 
         public bool InputDigitsAreIntegers()
         {
-            throw new NotImplementedException();
+            int number;
+            foreach(string digit in InputStringArray)
+            {
+                if(Int32.TryParse(digit, out number) == false)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }
