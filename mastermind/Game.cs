@@ -7,5 +7,10 @@ namespace mastermind
     public class Game
     {
         public int[] Answer { get; set; }
+
+        public void createRandomAnswer()
+        {
+
+        }
     }
 }

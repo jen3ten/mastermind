@@ -26,5 +26,13 @@ namespace mastermind.Tests
 
             Assert.IsType<int[]>(sut.Answer);
         }
+
+        [Fact]
+        public void createRandomAnswer_Should_Create_4_Digit_Answer()
+        {
+            sut.createRandomAnswer();
+
+            Assert.Equal(4, sut.Answer.Length);
+        }
     }
 }
