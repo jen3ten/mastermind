@@ -364,5 +364,16 @@ namespace mastermind.Tests
             Assert.All(sut.CorrectDigitCount, character => Assert.Equal('-', character));
         }
 
+        [Fact]
+        public void RemoveFromAnswerDigits_Should_Remove_One_Matching_Digit_From_AnswerDigitsRemaining_List()
+        {
+            string digit = "2";
+            sut.AnswerDigitsRemaining = new List<string>() { "1", "2", "2", "4" };
+            int expectedCount = sut.AnswerDigitsRemaining.Count - 1;
+
+            sut.RemoveFromAnswerDigits(digit);
+
+            Assert.Equal(expectedCount, sut.AnswerDigitsRemaining.Count);
+        }
     }
 }

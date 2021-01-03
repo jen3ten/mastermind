@@ -145,5 +145,10 @@ namespace mastermind
         {
             return AnswerDigitsRemaining.Contains(digit);
         }
+
+        public void RemoveFromAnswerDigits(string digit)
+        {
+
+        }
     }
 }
