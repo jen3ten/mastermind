@@ -314,6 +314,9 @@ namespace mastermind.Tests
 
         [Theory]
         [InlineData(new string[] { "1", "2", "3", "4" }, "1")]
+        [InlineData(new string[] { "1", "2", "3", "4" }, "2")]
+        [InlineData(new string[] { "1", "1", "1", "1" }, "1")]
+        [InlineData(new string[] { "2", "3", "4", "1" }, "1")]
         public void FindDigitInAnswer_Should_Return_True_If_Digit_Exists_In_AnswerDigitsRemaining_List(string[] answerDigits, string guessDigit)
         {
             sut.AnswerDigitsRemaining = new List<string>(answerDigits);
