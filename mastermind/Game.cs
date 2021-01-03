@@ -153,7 +153,14 @@ namespace mastermind
 
         public void CompareCorrectDigit()
         {
-
+            foreach(string digit in GuessDigitsRemaining)
+            {
+                if (FindDigitInAnswer(digit))
+                {
+                    IncreaseCorrectDigitCount();
+                    RemoveFromAnswerDigits(digit);
+                }
+            }
         }
     }
 }
