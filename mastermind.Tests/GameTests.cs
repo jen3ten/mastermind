@@ -225,6 +225,19 @@ namespace mastermind.Tests
             Assert.True(sut.WinningGuess());
         }
 
+        [Theory]
+        [InlineData("")]
+        [InlineData("+")]
+        [InlineData("++")]
+        [InlineData("+++")]
+        public void WinningGuess_Should_Return_False_If_Correct_Position_Count_Is_Less_Than_4(string positionCount)
+        {
+            sut.CorrectPositionCount = positionCount;
+
+            Assert.False(sut.WinningGuess());
+        }
+
+
         [Fact]
         public void AddToGuessDigits_Should_Add_Digit_To_GuessDigitsRemaining_List()
         {
