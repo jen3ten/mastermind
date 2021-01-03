@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Xunit;
 
 namespace mastermind.Tests
@@ -309,6 +310,126 @@ namespace mastermind.Tests
             Assert.Equal("++", sut.CorrectPositionCount);
             Assert.Equal(2, sut.GuessDigitsRemaining.Count);
             Assert.Equal(2, sut.AnswerDigitsRemaining.Count);
+        }
+
+        [Theory]
+        [InlineData(new string[] { "1", "2", "3", "4" }, "1")]
+        [InlineData(new string[] { "1", "2", "3", "4" }, "2")]
+        [InlineData(new string[] { "1", "1", "1", "1" }, "1")]
+        [InlineData(new string[] { "2", "3", "4", "1" }, "1")]
+        public void FindDigitInAnswer_Should_Return_True_If_Digit_Exists_In_AnswerDigitsRemaining_List(string[] answerDigits, string guessDigit)
+        {
+            sut.AnswerDigitsRemaining = new List<string>(answerDigits);
+
+            Assert.True(sut.FindDigitInAnswer(guessDigit));
+        }
+
+        [Theory]
+        [InlineData(new string[] { "1", "2", "3", "4" }, "5")]
+        [InlineData(new string[] { "1", "2", "3"}, "5")]
+        [InlineData(new string[] { "1", "1", "1", "1" }, "5")]
+        [InlineData(new string[] { "2", "3", "4", "1" }, "5")]
+        public void FindDigitInAnswer_Should_Return_False_If_Digit_Does_Not_Exist_In_AnswerDigitsRemaining_List(string[] answerDigits, string guessDigit)
+        {
+            sut.AnswerDigitsRemaining = new List<string>(answerDigits);
+
+            Assert.False(sut.FindDigitInAnswer(guessDigit));
+        }
+
+        [Theory]
+        [InlineData("")]
+        [InlineData("-")]
+        [InlineData("--")]
+        [InlineData("---")]
+        public void IncreaseCorrectDigitCount_Should_Increase_Minus_Symbols_By_1(string initialDigitCount)
+        {
+            sut.CorrectDigitCount = initialDigitCount;
+            int expectedCount = sut.CorrectDigitCount.Length + 1;
+
+            sut.IncreaseCorrectDigitCount();
+
+            Assert.Equal(expectedCount, sut.CorrectDigitCount.Length);
+        }
+
+        [Theory]
+        [InlineData("")]
+        [InlineData("-")]
+        [InlineData("--")]
+        [InlineData("---")]
+        public void CorrectDigitCount_Should_Consist_Of_Only_Minus_Symbols_After_Increase_Count(string initialDigitCount)
+        {
+            sut.CorrectDigitCount = initialDigitCount;
+            sut.IncreaseCorrectDigitCount();
+
+            Assert.All(sut.CorrectDigitCount, character => Assert.Equal('-', character));
+        }
+
+        [Theory]
+        [InlineData("2", new string[] { "2", "1", "3", "4" })]
+        [InlineData("2", new string[] { "1", "2", "3" })]
+        [InlineData("2", new string[] { "2", "2", "2", "2" })]
+        [InlineData("2", new string[] { "4", "3", "2", "2" })]
+        [InlineData("2", new string[] { "2" })]
+        public void RemoveFromAnswerDigits_Should_Remove_One_Matching_Digit_From_AnswerDigitsRemaining_List(string digit, string[] inputArray)
+        {
+            sut.AnswerDigitsRemaining = new List<string>(inputArray);
+            int expectedCount = sut.AnswerDigitsRemaining.Count - 1;
+
+            sut.RemoveFromAnswerDigits(digit);
+
+            Assert.Equal(expectedCount, sut.AnswerDigitsRemaining.Count);
+        }
+
+        [Theory]
+        [InlineData("2", new string[] { "2", "1", "3", "4" })]
+        [InlineData("2", new string[] { "1", "2", "3", "4" })]
+        [InlineData("2", new string[] { "1", "3", "2", "4" })]
+        [InlineData("2", new string[] { "4", "3", "1", "2" })]
+        public void RemoveFromAnswerDigits_Should_Remove_Value_2_From_AnswerDigitsRemaining_List(string digit, string[] inputArray)
+        {
+            sut.AnswerDigitsRemaining = new List<string>(inputArray);
+
+            sut.RemoveFromAnswerDigits(digit);
+
+            Assert.DoesNotContain("2", sut.AnswerDigitsRemaining);
+        }
+
+        [Fact]
+        public void CompareCorrectDigit_Should_Add_4_Minus_Symbols_To_Correct_Digit_Count_And_Remove_All_From_Answer_Digit_List()
+        {
+            sut.GuessDigitsRemaining = new List<string>() { "1", "2", "3", "4" };
+            sut.AnswerDigitsRemaining = new List<string>() { "1", "2", "3", "4" };
+
+            sut.CompareCorrectDigit();
+
+            Assert.Equal("----", sut.CorrectDigitCount);
+            Assert.Empty(sut.AnswerDigitsRemaining);
+        }
+
+        [Fact]
+        public void CompareCorrectDigit_Should_Add_0_Minus_Symbols_To_Correct_Digit_Count_And_Remove_None_From_Answer_Digit_List()
+        {
+            sut.GuessDigitsRemaining = new List<string>() { "1", "2", "3", "4" };
+            sut.AnswerDigitsRemaining = new List<string>() { "5", "5", "6", "6" };
+            int initialCount = sut.AnswerDigitsRemaining.Count;
+
+            sut.CompareCorrectDigit();
+
+            Assert.Equal("", sut.CorrectDigitCount);
+            Assert.Equal(initialCount, sut.AnswerDigitsRemaining.Count);
+        }
+
+        [Fact]
+        public void CompareCorrectDigit_Should_Add_2_Minus_Symbols_To_Correct_Digit_Count_And_Remove_2_Values_From_Answer_Digit_List()
+        {
+            sut.GuessDigitsRemaining = new List<string>() { "1", "2", "3", "4" };
+            sut.AnswerDigitsRemaining = new List<string>() { "1", "1", "2", "2" };
+            int initialCount = sut.AnswerDigitsRemaining.Count;
+
+            sut.CompareCorrectDigit();
+
+            Assert.Equal("--", sut.CorrectDigitCount);
+            Assert.Equal(initialCount - 2, sut.AnswerDigitsRemaining.Count);
         }
 
     }

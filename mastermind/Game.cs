@@ -8,6 +8,7 @@ namespace mastermind
         public string[] Answer { get; set; } = new string[4];
         public string[] Guess { get; set; }
         public string CorrectPositionCount { get; set; } = "";
+        public string CorrectDigitCount { get; set; } = "";
         public List<string> GuessDigitsRemaining { get; set; } = new List<string>();
         public List<string> AnswerDigitsRemaining { get; set; } = new List<string>();
 
@@ -131,6 +132,33 @@ namespace mastermind
                 {
                     AddToAnswerDigits(index);
                     AddToGuessDigits(index);
+                }
+            }
+        }
+
+        public bool FindDigitInAnswer(string digit)
+        {
+            return AnswerDigitsRemaining.Contains(digit);
+        }
+
+        public void IncreaseCorrectDigitCount()
+        {
+            CorrectDigitCount += "-";
+        }
+
+        public void RemoveFromAnswerDigits(string digit)
+        {
+            AnswerDigitsRemaining.Remove(digit);
+        }
+
+        public void CompareCorrectDigit()
+        {
+            foreach(string digit in GuessDigitsRemaining)
+            {
+                if (FindDigitInAnswer(digit))
+                {
+                    IncreaseCorrectDigitCount();
+                    RemoveFromAnswerDigits(digit);
                 }
             }
         }
