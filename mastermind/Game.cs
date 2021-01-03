@@ -178,6 +178,8 @@ namespace mastermind
         {
             CorrectPositionCount = "";
             CorrectDigitCount = "";
+            GuessDigitsRemaining.Clear();
+            AnswerDigitsRemaining.Clear();
         }
     }
 }
