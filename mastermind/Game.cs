@@ -118,5 +118,10 @@ namespace mastermind
         {
             AnswerDigitsRemaining.Add(Answer[index]);
         }
+
+        public void CompareCorrectPosition()
+        {
+
+        }
     }
 }
