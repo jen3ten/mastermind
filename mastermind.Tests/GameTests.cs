@@ -375,5 +375,20 @@ namespace mastermind.Tests
 
             Assert.Equal(expectedCount, sut.AnswerDigitsRemaining.Count);
         }
+
+        [Theory]
+        [InlineData("2", new string[] { "2", "1", "3", "4" })]
+        [InlineData("2", new string[] { "1", "2", "3", "4" })]
+        [InlineData("2", new string[] { "1", "3", "2", "4" })]
+        [InlineData("2", new string[] { "4", "3", "1", "2" })]
+        public void RemoveFromAnswerDigits_Should_Remove_Value_2_From_AnswerDigitsRemaining_List(string digit, string[] inputArray)
+        {
+            sut.AnswerDigitsRemaining = new List<string>(inputArray);
+
+            sut.RemoveFromAnswerDigits(digit);
+
+            Assert.DoesNotContain("2", sut.AnswerDigitsRemaining);
+        }
+
     }
 }
