@@ -116,7 +116,7 @@ namespace mastermind
 
         public void AddToAnswerDigits(int index)
         {
-
+            AnswerDigitsRemaining.Add(Answer[index]);
         }
     }
 }
