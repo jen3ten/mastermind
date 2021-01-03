@@ -98,7 +98,7 @@ namespace mastermind
 
         public bool MatchPositionInAnswer(int index)
         {
-            return false;
+            return Answer[index].Equals(Guess[index]);
         }
     }
 }
