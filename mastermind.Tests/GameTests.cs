@@ -202,5 +202,18 @@ namespace mastermind.Tests
 
             Assert.Equal(expectedCount, sut.CorrectPositionCount.Length);
         }
+
+        [Theory]
+        [InlineData("")]
+        [InlineData("+")]
+        [InlineData("++")]
+        [InlineData("+++")]
+        public void CorrectPositionCount_Should_Consist_Of_Only_Plus_Symbols_After_Increase_Count(string initialPositionCount)
+        {
+            sut.CorrectPositionCount = initialPositionCount;
+            sut.IncreaseCorrectPositionCount();
+
+            Assert.All(sut.CorrectPositionCount, character => Assert.Equal('+', character));
+        }
     }
 }
