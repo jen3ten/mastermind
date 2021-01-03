@@ -364,11 +364,15 @@ namespace mastermind.Tests
             Assert.All(sut.CorrectDigitCount, character => Assert.Equal('-', character));
         }
 
-        [Fact]
-        public void RemoveFromAnswerDigits_Should_Remove_One_Matching_Digit_From_AnswerDigitsRemaining_List()
+        [Theory]
+        [InlineData("2", new string[] { "2", "1", "3", "4" })]
+        [InlineData("2", new string[] { "1", "2", "3" })]
+        [InlineData("2", new string[] { "2", "2", "2", "2" })]
+        [InlineData("2", new string[] { "4", "3", "2", "2" })]
+        [InlineData("2", new string[] { "2" })]
+        public void RemoveFromAnswerDigits_Should_Remove_One_Matching_Digit_From_AnswerDigitsRemaining_List(string digit, string[] inputArray)
         {
-            string digit = "2";
-            sut.AnswerDigitsRemaining = new List<string>() { "1", "2", "2", "4" };
+            sut.AnswerDigitsRemaining = new List<string>(inputArray);
             int expectedCount = sut.AnswerDigitsRemaining.Count - 1;
 
             sut.RemoveFromAnswerDigits(digit);
