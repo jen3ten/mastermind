@@ -243,5 +243,18 @@ namespace mastermind.Tests
 
             Assert.Contains("2", sut.GuessDigitsRemaining);
         }
+
+        [Fact]
+        public void AddToAnswerDigits_Should_Add_Digit_To_AnswerDigitsRemaining_List()
+        {
+            int index = 0;
+            int expectedCount = sut.AnswerDigitsRemaining.Count + 1;
+            sut.Answer = new string[] { "1", "2", "3", "4" };
+
+            sut.AddToAnswerDigits(index);
+
+            Assert.Equal(expectedCount, sut.AnswerDigitsRemaining.Count);
+        }
+
     }
 }

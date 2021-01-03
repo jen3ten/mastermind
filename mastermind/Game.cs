@@ -9,7 +9,7 @@ namespace mastermind
         public string[] Guess { get; set; }
         public string CorrectPositionCount { get; set; }
         public List<string> GuessDigitsRemaining { get; set; } = new List<string>();
-
+        public List<string> AnswerDigitsRemaining { get; set; } = new List<string>();
 
         public int GetRandomDigit()
         {
@@ -112,6 +112,11 @@ namespace mastermind
         public void AddToGuessDigits(int index)
         {
             GuessDigitsRemaining.Add(Guess[index]);
+        }
+
+        public void AddToAnswerDigits(int index)
+        {
+
         }
     }
 }
