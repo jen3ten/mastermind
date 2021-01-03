@@ -8,6 +8,7 @@ namespace mastermind
         public string[] Answer { get; set; } = new string[4];
         public string[] Guess { get; set; }
         public string CorrectPositionCount { get; set; } = "";
+        public string CorrectDigitCount { get; set; } = "";
         public List<string> GuessDigitsRemaining { get; set; } = new List<string>();
         public List<string> AnswerDigitsRemaining { get; set; } = new List<string>();
 
@@ -107,6 +108,11 @@ namespace mastermind
         public void IncreaseCorrectPositionCount()
         {
             CorrectPositionCount += "+";
+        }
+
+        public void IncreaseCorrectDigitCount()
+        {
+
         }
 
         public void AddToGuessDigits(int index)

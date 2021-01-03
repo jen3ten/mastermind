@@ -336,5 +336,20 @@ namespace mastermind.Tests
             Assert.False(sut.FindDigitInAnswer(guessDigit));
         }
 
+        [Theory]
+        [InlineData("")]
+        [InlineData("-")]
+        [InlineData("--")]
+        [InlineData("---")]
+        public void IncreaseCorrectDigitCount_Should_Increase_Minus_Symbols_By_1(string initialDigitCount)
+        {
+            sut.CorrectDigitCount = initialDigitCount;
+            int expectedCount = sut.CorrectDigitCount.Length + 1;
+
+            sut.IncreaseCorrectDigitCount();
+
+            Assert.Equal(expectedCount, sut.CorrectDigitCount.Length);
+        }
+
     }
 }
