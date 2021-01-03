@@ -171,7 +171,7 @@ namespace mastermind
 
         public void DisplayResult()
         {
-            Console.WriteLine(CorrectPositionCount + CorrectDigitCount);
+            Console.WriteLine("Result:\t" + CorrectPositionCount + CorrectDigitCount);
         }
 
         public void ResetResult()

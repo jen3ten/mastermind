@@ -12,8 +12,8 @@ namespace mastermind
             Console.WriteLine("Each digit is an integer between 1-6.");
             Console.WriteLine("Digits can be repeated.");
             Console.WriteLine("You will have 10 chances to guess the answer.");
-            Console.WriteLine("I will give you a - (minus) symbol for every digit that is correct, but in the wrong position.");
             Console.WriteLine("I will give you a + (plus) symbol for every digit that is correct and in the correct position.");
+            Console.WriteLine("I will give you a - (minus) symbol for every digit that is correct, but in the wrong position.");
             Console.WriteLine("Enter exactly 4 digits for each guess. Do not include spaces or commas.");
             Console.WriteLine("\nGood Luck!\n");
 
@@ -32,13 +32,14 @@ namespace mastermind
 
             int guessNumber = 1;
             bool continueGuessing = true;
+
             // Ask for guesses until user wins or reaches maximum number of guesses
             do
             {
                 // Request valid guess from user
                 do
                 {
-                    Console.Write($"Guess #{guessNumber}: ");
+                    Console.Write($"Guess #{guessNumber}:\t");
                     game.ConvertInputToStringArray(Console.ReadLine());
                 } while (!game.CheckValidityOfInput());
 
@@ -57,7 +58,7 @@ namespace mastermind
                     game.CompareCorrectDigit();
                     game.DisplayResult();
 
-                    // Disply message and stop game if maximum number of guesses have been reached
+                    // Stop game if maximum number of guesses have been reached
                     if(guessNumber >= game.MaximumGuesses)
                     {
                         continueGuessing = false;
