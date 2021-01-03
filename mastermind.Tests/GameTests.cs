@@ -11,7 +11,6 @@ namespace mastermind.Tests
             sut = new Game();
         }
 
-
         // Answer Tests
         [Fact]
         public void Game_Can_Set_4_Digit_Answer_Property()
@@ -40,7 +39,7 @@ namespace mastermind.Tests
         [Fact]
         public void GetRandomDigit_Should_Return_Integer_Between_1_And_6()
         {
-            for(int i = 0; i < 50; i++)
+            for (int i = 0; i < 50; i++)
             {
                 int digit = sut.GetRandomDigit();
 
@@ -171,6 +170,145 @@ namespace mastermind.Tests
             sut.ConvertInputToStringArray(input);
 
             Assert.False(sut.InputDigitsInRange());
+        }
+
+        // Compare Correct Position Tests
+        [Theory]
+        [InlineData("1234", 0)]
+        [InlineData("1234", 1)]
+        [InlineData("1234", 2)]
+        [InlineData("1234", 3)]
+        [InlineData("1111", 0)]
+        [InlineData("4324", 3)]
+        public void MatchPositionInAnswer_Should_Return_True_If_Guess_Matches_Answer_At_Index(string guessString, int index)
+        {
+            sut.Answer = new string[] { "1", "2", "3", "4" };
+            sut.ConvertInputToStringArray(guessString);
+
+            Assert.True(sut.MatchPositionInAnswer(index));
+        }
+
+        [Theory]
+        [InlineData("")]
+        [InlineData("+")]
+        [InlineData("++")]
+        [InlineData("+++")]
+        public void IncreaseCorrectPositionCount_Should_Increase_Plus_Symbols_By_1(string initialPositionCount)
+        {
+            sut.CorrectPositionCount = initialPositionCount;
+            int expectedCount = sut.CorrectPositionCount.Length + 1;
+
+            sut.IncreaseCorrectPositionCount();
+
+            Assert.Equal(expectedCount, sut.CorrectPositionCount.Length);
+        }
+
+        [Theory]
+        [InlineData("")]
+        [InlineData("+")]
+        [InlineData("++")]
+        [InlineData("+++")]
+        public void CorrectPositionCount_Should_Consist_Of_Only_Plus_Symbols_After_Increase_Count(string initialPositionCount)
+        {
+            sut.CorrectPositionCount = initialPositionCount;
+            sut.IncreaseCorrectPositionCount();
+
+            Assert.All(sut.CorrectPositionCount, character => Assert.Equal('+', character));
+        }
+
+        [Fact]
+        public void AddToGuessDigits_Should_Add_Digit_To_GuessDigitsRemaining_List()
+        {
+            int index = 0;
+            int expectedCount = sut.GuessDigitsRemaining.Count + 1;
+            sut.ConvertInputToStringArray("1234");
+
+            sut.AddToGuessDigits(index);
+
+            Assert.Equal(expectedCount, sut.GuessDigitsRemaining.Count);
+        }
+
+        [Theory]
+        [InlineData(0, "2134")]
+        [InlineData(0, "2222")]
+        [InlineData(2, "2222")]
+        [InlineData(1, "1234")]
+        [InlineData(2, "1324")]
+        [InlineData(3, "4312")]
+        public void AddToGuessDigits_Should_Add_Value_2_To_GuessDigitsRemaining_List(int index, string inputString)
+        {
+            sut.ConvertInputToStringArray(inputString);
+
+            sut.AddToGuessDigits(index);
+
+            Assert.Contains("2", sut.GuessDigitsRemaining);
+        }
+
+        [Fact]
+        public void AddToAnswerDigits_Should_Add_Digit_To_AnswerDigitsRemaining_List()
+        {
+            int index = 0;
+            int expectedCount = sut.AnswerDigitsRemaining.Count + 1;
+            sut.Answer = new string[] { "1", "2", "3", "4" };
+
+            sut.AddToAnswerDigits(index);
+
+            Assert.Equal(expectedCount, sut.AnswerDigitsRemaining.Count);
+        }
+
+        [Theory]
+        [InlineData(0, new string[] { "2", "1", "3", "4" })]
+        [InlineData(0, new string[] { "2", "2", "2", "2" })]
+        [InlineData(2, new string[] { "2", "2", "2", "2" })]
+        [InlineData(1, new string[] { "1", "2", "3", "4" })]
+        [InlineData(2, new string[] { "1", "3", "2", "4" })]
+        [InlineData(3, new string[] { "4", "3", "1", "2" })]
+        public void AddToAnswerDigits_Should_Add_Value_2_To_AnswerDigitsRemaining_List(int index, string[] inputArray)
+        {
+            sut.Answer = inputArray;
+
+            sut.AddToAnswerDigits(index);
+
+            Assert.Contains("2", sut.AnswerDigitsRemaining);
+        }
+
+        [Fact]
+        public void CompareCorrectPosition_Should_Add_4_Plus_Symbols_To_Correct_Position_And_Nothing_To_Digit_Lists()
+        {
+            sut.Guess = new string[] { "1", "2", "3", "4" };
+            sut.Answer = new string[] { "1", "2", "3", "4" };
+
+            sut.CompareCorrectPosition();
+
+            Assert.Equal("++++", sut.CorrectPositionCount);
+            Assert.Empty(sut.GuessDigitsRemaining);
+            Assert.Empty(sut.AnswerDigitsRemaining);
+        }
+
+        [Fact]
+        public void CompareCorrectPosition_Should_Add_0_Plus_Symbols_To_Correct_Position_And_4_Values_To_Digit_Lists()
+        {
+            sut.Guess = new string[] { "1", "2", "3", "4" };
+            sut.Answer = new string[] { "4", "3", "2", "1" };
+
+            sut.CompareCorrectPosition();
+
+            Assert.Equal("", sut.CorrectPositionCount);
+            Assert.Equal(4, sut.GuessDigitsRemaining.Count);
+            Assert.Equal(4, sut.AnswerDigitsRemaining.Count);
+        }
+
+        [Fact]
+        public void CompareCorrectPosition_Should_Add_2_Plus_Symbols_To_Correct_Position_And_2_Values_To_Digit_Lists()
+        {
+            sut.Guess = new string[] { "1", "2", "3", "4" };
+            sut.Answer = new string[] { "1", "5", "6", "4" };
+
+            sut.CompareCorrectPosition();
+
+            Assert.Equal("++", sut.CorrectPositionCount);
+            Assert.Equal(2, sut.GuessDigitsRemaining.Count);
+            Assert.Equal(2, sut.AnswerDigitsRemaining.Count);
         }
 
     }
