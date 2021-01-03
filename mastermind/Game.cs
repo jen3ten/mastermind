@@ -121,7 +121,18 @@ namespace mastermind
 
         public void CompareCorrectPosition()
         {
-
+            for(int index = 0; index < 4; index++)
+            {
+                if (MatchPositionInAnswer(index))
+                {
+                    IncreaseCorrectPositionCount();
+                }
+                else
+                {
+                    AddToAnswerDigits(index);
+                    AddToGuessDigits(index);
+                }
+            }
         }
     }
 }

@@ -273,7 +273,7 @@ namespace mastermind.Tests
         }
 
         [Fact]
-        public void CompareCorrectPosition_Should_Add_4_Plus_To_Correct_Position_And_Nothing_To_Digit_Lists()
+        public void CompareCorrectPosition_Should_Add_4_Plus_Symbols_To_Correct_Position_And_Nothing_To_Digit_Lists()
         {
             sut.Guess = new string[] { "1", "2", "3", "4" };
             sut.Answer = new string[] { "1", "2", "3", "4" };
@@ -281,6 +281,8 @@ namespace mastermind.Tests
             sut.CompareCorrectPosition();
 
             Assert.Equal("++++", sut.CorrectPositionCount);
+            Assert.Empty(sut.GuessDigitsRemaining);
+            Assert.Empty(sut.AnswerDigitsRemaining);
         }
     }
 }
