@@ -111,6 +111,7 @@ namespace mastermind
 
         public void AddToGuessDigits(int index)
         {
+            GuessDigitsRemaining.Add(Guess[index]);
         }
     }
 }
