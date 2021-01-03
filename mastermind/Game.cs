@@ -6,6 +6,7 @@ namespace mastermind
     {
         public string[] Answer { get; set; } = new string[4];
         public string[] Guess { get; set; }
+        public string CorrectPositionCount { get; set; }
 
 
         public int GetRandomDigit()
@@ -99,6 +100,11 @@ namespace mastermind
         public bool MatchPositionInAnswer(int index)
         {
             return Answer[index].Equals(Guess[index]);
+        }
+
+        public void IncreaseCorrectPositionCount()
+        {
+
         }
     }
 }

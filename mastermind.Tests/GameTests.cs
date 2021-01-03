@@ -187,5 +187,20 @@ namespace mastermind.Tests
 
             Assert.True(sut.MatchPositionInAnswer(index));
         }
+
+        [Theory]
+        [InlineData("")]
+        [InlineData("+")]
+        [InlineData("++")]
+        [InlineData("+++")]
+        public void IncreaseCorrectPositionCount_Should_Increase_Plus_Symbols_By_1(string initialPositionCount)
+        {
+            sut.CorrectPositionCount = initialPositionCount;
+            int expectedCount = sut.CorrectPositionCount.Length + 1;
+
+            sut.IncreaseCorrectPositionCount();
+
+            Assert.Equal(expectedCount, sut.CorrectPositionCount.Length);
+        }
     }
 }
