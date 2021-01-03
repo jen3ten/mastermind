@@ -21,14 +21,8 @@ namespace mastermind
             Game game = new Game();
             game.GenerateRandomAnswer();
 
-            // For developement only
-            Console.Write("Answer: ");
-            foreach(string digit in game.Answer)
-            {
-                Console.Write(digit);
-            }
-            Console.WriteLine();
-            Console.WriteLine();
+            // For development only
+            // game.DisplayAnswer();
 
             int guessNumber = 1;
             bool continueGuessing = true;
@@ -64,6 +58,7 @@ namespace mastermind
                     {
                         continueGuessing = false;
                         Console.WriteLine($"Too bad!  You didn't guess the answer in {game.MaximumGuesses} tries.");
+                        game.DisplayAnswer();
                     }
                     guessNumber += 1;
                     game.ResetResult();

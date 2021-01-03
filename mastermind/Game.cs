@@ -174,6 +174,16 @@ namespace mastermind
             Console.WriteLine($"{"Result:", -12}{CorrectPositionCount}{CorrectDigitCount}");
         }
 
+        public void DisplayAnswer()
+        {
+            string answer = "";
+            foreach(string digit in Answer)
+            {
+                answer += digit;
+            }
+            Console.WriteLine($"{"Answer:", -12}{answer}");
+        }
+
         public void ResetResult()
         {
             CorrectPositionCount = "";
