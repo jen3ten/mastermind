@@ -69,17 +69,17 @@ namespace mastermind.Tests
         [Fact]
         public void Game_Can_Set_4_Digit_Guess_Property()
         {
-            sut.Guess = new int[] { 1, 2, 3, 4 };
+            sut.Guess = new string[] { "1", "2", "3", "4" };
 
             Assert.True(sut.Guess != null);
         }
 
         [Fact]
-        public void Guess_Is_Integer_Array()
+        public void Guess_Is_String_Array()
         {
-            sut.Guess = new int[] { 1, 2, 3, 4 };
+            sut.Guess = new string[] { "1", "2", "3", "4" };
 
-            Assert.IsType<int[]>(sut.Guess);
+            Assert.IsType<string[]>(sut.Guess);
         }
 
         [Theory]
@@ -94,7 +94,7 @@ namespace mastermind.Tests
         {
             sut.ConvertInputToStringArray(input);
 
-            Assert.IsType<string[]>(sut.InputStringArray);
+            Assert.IsType<string[]>(sut.Guess);
         }
 
         [Theory]
