@@ -221,6 +221,7 @@ namespace mastermind.Tests
         {
             int index = 0;
             int expectedCount = sut.GuessDigitsRemaining.Count + 1;
+            sut.ConvertInputToStringArray("1234");
 
             sut.AddToGuessDigits(index);
 
