@@ -419,5 +419,18 @@ namespace mastermind.Tests
             Assert.Equal(initialCount, sut.AnswerDigitsRemaining.Count);
         }
 
+        [Fact]
+        public void CompareCorrectDigit_Should_Add_2_Minus_Symbols_To_Correct_Digit_Count_And_Remove_2_Values_From_Answer_Digit_List()
+        {
+            sut.GuessDigitsRemaining = new List<string>() { "1", "2", "3", "4" };
+            sut.AnswerDigitsRemaining = new List<string>() { "1", "1", "2", "2" };
+            int initialCount = sut.AnswerDigitsRemaining.Count;
+
+            sut.CompareCorrectDigit();
+
+            Assert.Equal("--", sut.CorrectDigitCount);
+            Assert.Equal(initialCount - 2, sut.AnswerDigitsRemaining.Count);
+        }
+
     }
 }
