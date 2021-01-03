@@ -138,7 +138,7 @@ namespace mastermind
 
         public bool WinningGuess()
         {
-            return false;
+            return CorrectPositionCount.Length == 4;
         }
 
         public bool FindDigitInAnswer(string digit)
