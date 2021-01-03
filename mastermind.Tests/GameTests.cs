@@ -323,5 +323,18 @@ namespace mastermind.Tests
 
             Assert.True(sut.FindDigitInAnswer(guessDigit));
         }
+
+        [Theory]
+        [InlineData(new string[] { "1", "2", "3", "4" }, "5")]
+        [InlineData(new string[] { "1", "2", "3"}, "5")]
+        [InlineData(new string[] { "1", "1", "1", "1" }, "5")]
+        [InlineData(new string[] { "2", "3", "4", "1" }, "5")]
+        public void FindDigitInAnswer_Should_Return_False_If_Digit_Does_Not_Exist_In_AnswerDigitsRemaining_List(string[] answerDigits, string guessDigit)
+        {
+            sut.AnswerDigitsRemaining = new List<string>(answerDigits);
+
+            Assert.False(sut.FindDigitInAnswer(guessDigit));
+        }
+
     }
 }
