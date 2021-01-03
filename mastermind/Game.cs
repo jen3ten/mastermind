@@ -148,7 +148,7 @@ namespace mastermind
 
         public void RemoveFromAnswerDigits(string digit)
         {
-
+            AnswerDigitsRemaining.Remove(digit);
         }
     }
 }
