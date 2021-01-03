@@ -298,5 +298,18 @@ namespace mastermind.Tests
             Assert.Equal(4, sut.AnswerDigitsRemaining.Count);
         }
 
+        [Fact]
+        public void CompareCorrectPosition_Should_Add_2_Plus_Symbols_To_Correct_Position_And_2_Values_To_Digit_Lists()
+        {
+            sut.Guess = new string[] { "1", "2", "3", "4" };
+            sut.Answer = new string[] { "1", "5", "6", "4" };
+
+            sut.CompareCorrectPosition();
+
+            Assert.Equal("++", sut.CorrectPositionCount);
+            Assert.Equal(2, sut.GuessDigitsRemaining.Count);
+            Assert.Equal(2, sut.AnswerDigitsRemaining.Count);
+        }
+
     }
 }
