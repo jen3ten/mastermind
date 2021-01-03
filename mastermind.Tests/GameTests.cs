@@ -30,38 +30,147 @@ namespace mastermind.Tests
         }
 
         [Fact]
-        public void getRandomDigit_Should_Return_Integer()
+        public void GetRandomDigit_Should_Return_Integer()
         {
-            int digit = sut.getRandomDigit();
+            int digit = sut.GetRandomDigit();
 
             Assert.IsType<int>(digit);
         }
 
         [Fact]
-        public void getRandomDigit_Should_Return_Integer_Between_1_And_6()
+        public void GetRandomDigit_Should_Return_Integer_Between_1_And_6()
         {
             for(int i = 0; i < 50; i++)
             {
-                int digit = sut.getRandomDigit();
+                int digit = sut.GetRandomDigit();
 
                 Assert.InRange(digit, 1, 6);
             }
         }
 
         [Fact]
-        public void generateRandomAnswer_Should_Create_4_Digit_Answer()
+        public void GenerateRandomAnswer_Should_Create_4_Digit_Answer()
         {
-            sut.generateRandomAnswer();
+            sut.GenerateRandomAnswer();
 
             Assert.Equal(4, sut.Answer.Length);
         }
 
         [Fact]
-        public void generateRandomAnswer_Should_Create_Answer_With_Digits_Between_1_And_6()
+        public void GenerateRandomAnswer_Should_Create_Answer_With_Digits_Between_1_And_6()
         {
-            sut.generateRandomAnswer();
+            sut.GenerateRandomAnswer();
 
             Assert.All(sut.Answer, digit => Assert.InRange(digit, 1, 6));
         }
+
+        // Guess Tests
+        [Fact]
+        public void Game_Can_Set_4_Digit_Guess_Property()
+        {
+            sut.Guess = new int[] { 1, 2, 3, 4 };
+
+            Assert.True(sut.Guess != null);
+        }
+
+        [Fact]
+        public void Guess_Is_Integer_Array()
+        {
+            sut.Guess = new int[] { 1, 2, 3, 4 };
+
+            Assert.IsType<int[]>(sut.Guess);
+        }
+
+        [Theory]
+        [InlineData("5555")]
+        [InlineData("7890")]
+        [InlineData("aaaa")]
+        [InlineData("string")]
+        [InlineData("1 2 3 4")]
+        [InlineData("This is a string!")]
+        [InlineData("1,2,3,4")]
+        public void ConvertInputToStringArray_Should_Convert_String_To_String_Array(string input)
+        {
+            sut.ConvertInputToStringArray(input);
+
+            Assert.IsType<string[]>(sut.InputStringArray);
+        }
+
+        [Theory]
+        [InlineData("5555")]
+        [InlineData("7890")]
+        [InlineData("aaaa")]
+        public void InputIs4Digits_Should_Return_True_If_InputStringArray_Has_Length_of_4(string input)
+        {
+            sut.ConvertInputToStringArray(input);
+
+            Assert.True(sut.InputIs4Digits());
+        }
+
+        [Theory]
+        [InlineData("string")]
+        [InlineData("1 2 3 4")]
+        [InlineData("This is a string!")]
+        [InlineData("1,2,3,4")]
+        public void InputIs4Digits_Should_Return_False_If_InputStringArray_Does_Not_Have_Length_of_4(string input)
+        {
+            sut.ConvertInputToStringArray(input);
+
+            Assert.False(sut.InputIs4Digits());
+        }
+
+        [Theory]
+        [InlineData("5555")]
+        [InlineData("7890")]
+        [InlineData("123456789")]
+        public void InputDigitsAreIntegers_Should_Return_True_If_InputStringArray_Elements_Can_Be_Converted_To_Int(string input)
+        {
+            sut.ConvertInputToStringArray(input);
+
+            Assert.True(sut.InputDigitsAreIntegers());
+        }
+
+        [Theory]
+        [InlineData("string")]
+        [InlineData("1 2 3 4")]
+        [InlineData("This is a string!")]
+        [InlineData("1,2,3,4")]
+        [InlineData("123a")]
+        public void InputDigitsAreIntegers_Should_Return_False_If_Any_InputStringArray_Elements_Can_Not_Be_Converted_To_Int(string input)
+        {
+            sut.ConvertInputToStringArray(input);
+
+            Assert.False(sut.InputDigitsAreIntegers());
+        }
+
+        [Theory]
+        [InlineData("5555")]
+        [InlineData("1234")]
+        [InlineData("3344")]
+        [InlineData("123456")]
+        [InlineData("123a")]
+        [InlineData("1 2 3 4")]
+        [InlineData("1,2,3,4")]
+        public void InputDigitsInRange_Should_Return_True_If_InputStringArray_Digits_Are_Between_1_And_6(string input)
+        {
+            sut.ConvertInputToStringArray(input);
+
+            Assert.True(sut.InputDigitsInRange());
+        }
+
+        [Theory]
+        [InlineData("7890")]
+        [InlineData("1273")]
+        [InlineData("1203")]
+        [InlineData("123456789")]
+        [InlineData("7777")]
+        [InlineData("0000")]
+        public void InputDigitsInRange_Should_Return_False_If_InputStringArray_Digits_Are_Not_Between_1_And_6(string input)
+        {
+            sut.ConvertInputToStringArray(input);
+
+            Assert.False(sut.InputDigitsInRange());
+        }
+
     }
 }

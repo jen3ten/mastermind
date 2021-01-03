@@ -14,14 +14,19 @@ namespace mastermind
             Console.WriteLine("You will have 10 chances to guess the answer.");
             Console.WriteLine("I will give you a - (minus) symbol for every digit that is correct, but in the wrong position.");
             Console.WriteLine("I will give you a + (plus) symbol for every digit that is correct and in the correct position.");
+            Console.WriteLine("Enter exactly 4 digits for each guess. Do not include spaces or commas.");
             Console.WriteLine("\nGood Luck!\n");
 
             Game game = new Game();
-            game.generateRandomAnswer();
-            foreach(int digit in game.Answer)
+            game.GenerateRandomAnswer();
+
+            int guessNumber = 1;
+            do
             {
-                Console.Write(digit + " ");
-            }
+                Console.Write($"Guess #{guessNumber}: ");
+                game.ConvertInputToStringArray(Console.ReadLine());
+            } while (!game.CheckValidityOfInput());
+            Console.ReadKey();
         }
     }
 }
