@@ -453,5 +453,56 @@ namespace mastermind.Tests
             Assert.Equal(initialCount - 2, sut.AnswerDigitsRemaining.Count);
         }
 
+        [Fact]
+        public void ResetResult_Resets_CorrectPositionCount()
+        {
+            sut.CorrectPositionCount = "++";
+            sut.CorrectDigitCount = "--";
+            sut.GuessDigitsRemaining = new List<string>() { "1", "2"};
+            sut.AnswerDigitsRemaining = new List<string>() { "2", "4" };
+
+            sut.ResetResult();
+
+            Assert.Empty(sut.CorrectPositionCount);
+        }
+
+        [Fact]
+        public void ResetResult_Resets_CorrectDigitCount()
+        {
+            sut.CorrectPositionCount = "++";
+            sut.CorrectDigitCount = "--";
+            sut.GuessDigitsRemaining = new List<string>() { "1", "2" };
+            sut.AnswerDigitsRemaining = new List<string>() { "2", "4" };
+
+            sut.ResetResult();
+
+            Assert.Empty(sut.CorrectDigitCount);
+        }
+
+        [Fact]
+        public void ResetResult_Resets_GuessDigitsRemaining()
+        {
+            sut.CorrectPositionCount = "++";
+            sut.CorrectDigitCount = "--";
+            sut.GuessDigitsRemaining = new List<string>() { "1", "2" };
+            sut.AnswerDigitsRemaining = new List<string>() { "2", "4" };
+
+            sut.ResetResult();
+
+            Assert.Empty(sut.GuessDigitsRemaining);
+        }
+
+        [Fact]
+        public void ResetResult_Resets_AnswerDigitsRemaining()
+        {
+            sut.CorrectPositionCount = "++";
+            sut.CorrectDigitCount = "--";
+            sut.GuessDigitsRemaining = new List<string>() { "1", "2" };
+            sut.AnswerDigitsRemaining = new List<string>() { "2", "4" };
+
+            sut.ResetResult();
+
+            Assert.Empty(sut.AnswerDigitsRemaining);
+        }
     }
 }
