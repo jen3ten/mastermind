@@ -112,7 +112,7 @@ namespace mastermind
 
         public void IncreaseCorrectDigitCount()
         {
-
+            CorrectDigitCount += "-";
         }
 
         public void AddToGuessDigits(int index)
