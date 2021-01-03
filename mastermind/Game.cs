@@ -134,5 +134,10 @@ namespace mastermind
                 }
             }
         }
+
+        public bool FindDigitInAnswer(string digit)
+        {
+            return false;
+        }
     }
 }

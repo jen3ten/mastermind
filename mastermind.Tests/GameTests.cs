@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Xunit;
 
 namespace mastermind.Tests
@@ -311,5 +312,13 @@ namespace mastermind.Tests
             Assert.Equal(2, sut.AnswerDigitsRemaining.Count);
         }
 
+        [Theory]
+        [InlineData(new string[] { "1", "2", "3", "4" }, "1")]
+        public void FindDigitInAnswer_Should_Return_True_If_Digit_Exists_In_AnswerDigitsRemaining_List(string[] answerDigits, string guessDigit)
+        {
+            sut.AnswerDigitsRemaining = new List<string>(answerDigits);
+
+            Assert.True(sut.FindDigitInAnswer(guessDigit));
+        }
     }
 }
