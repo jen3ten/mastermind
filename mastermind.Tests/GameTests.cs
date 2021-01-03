@@ -256,5 +256,21 @@ namespace mastermind.Tests
             Assert.Equal(expectedCount, sut.AnswerDigitsRemaining.Count);
         }
 
+        [Theory]
+        [InlineData(0, new string[] { "2", "1", "3", "4" })]
+        [InlineData(0, new string[] { "2", "2", "2", "2" })]
+        [InlineData(2, new string[] { "2", "2", "2", "2" })]
+        [InlineData(1, new string[] { "1", "2", "3", "4" })]
+        [InlineData(2, new string[] { "1", "3", "2", "4" })]
+        [InlineData(3, new string[] { "4", "3", "1", "2" })]
+        public void AddToAnswerDigits_Should_Add_Value_2_To_AnswerDigitsRemaining_List(int index, string[] inputArray)
+        {
+            sut.Answer = inputArray;
+
+            sut.AddToAnswerDigits(index);
+
+            Assert.Contains("2", sut.AnswerDigitsRemaining);
+        }
+
     }
 }
