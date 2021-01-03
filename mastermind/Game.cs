@@ -4,7 +4,7 @@ namespace mastermind
 {
     public class Game
     {
-        public int[] Answer { get; set; } = new int[4];
+        public string[] Answer { get; set; } = new string[4];
         public int[] Guess { get; set; } = new int[4];
         public string[] InputStringArray { get; set; }
 
@@ -19,7 +19,7 @@ namespace mastermind
         {
             for(int i = 0; i < 4; i++)
             {
-                Answer[i] = GetRandomDigit();
+                Answer[i] = GetRandomDigit().ToString();
             }
         }
 

@@ -16,17 +16,17 @@ namespace mastermind.Tests
         [Fact]
         public void Game_Can_Set_4_Digit_Answer_Property()
         {
-            sut.Answer = new int[] { 1, 2, 3, 4 };
+            sut.Answer = new string[] { "1", "2", "3", "4" };
 
             Assert.True(sut.Answer != null);
         }
 
         [Fact]
-        public void Answer_Is_Integer_Array()
+        public void Answer_Is_String_Array()
         {
-            sut.Answer = new int[] { 1, 2, 3, 4 };
+            sut.Answer = new string[] { "1", "2", "3", "4" };
 
-            Assert.IsType<int[]>(sut.Answer);
+            Assert.IsType<string[]>(sut.Answer);
         }
 
         [Fact]
@@ -59,9 +59,10 @@ namespace mastermind.Tests
         [Fact]
         public void GenerateRandomAnswer_Should_Create_Answer_With_Digits_Between_1_And_6()
         {
+            string validDigits = "123456";
             sut.GenerateRandomAnswer();
 
-            Assert.All(sut.Answer, digit => Assert.InRange(digit, 1, 6));
+            Assert.All(sut.Answer, digit => Assert.Contains(digit, validDigits));
         }
 
         // Guess Tests
