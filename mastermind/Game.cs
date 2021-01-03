@@ -136,6 +136,11 @@ namespace mastermind
             }
         }
 
+        public bool WinningGuess()
+        {
+            return false;
+        }
+
         public bool FindDigitInAnswer(string digit)
         {
             return AnswerDigitsRemaining.Contains(digit);
