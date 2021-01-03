@@ -351,5 +351,18 @@ namespace mastermind.Tests
             Assert.Equal(expectedCount, sut.CorrectDigitCount.Length);
         }
 
+        [Theory]
+        [InlineData("")]
+        [InlineData("-")]
+        [InlineData("--")]
+        [InlineData("---")]
+        public void CorrectDigitCount_Should_Consist_Of_Only_Minus_Symbols_After_Increase_Count(string initialDigitCount)
+        {
+            sut.CorrectDigitCount = initialDigitCount;
+            sut.IncreaseCorrectDigitCount();
+
+            Assert.All(sut.CorrectDigitCount, character => Assert.Equal('-', character));
+        }
+
     }
 }
