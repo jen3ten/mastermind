@@ -104,7 +104,7 @@ namespace mastermind
 
         public void IncreaseCorrectPositionCount()
         {
-
+            CorrectPositionCount += "+";
         }
     }
 }
