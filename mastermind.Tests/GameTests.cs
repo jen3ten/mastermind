@@ -227,5 +227,21 @@ namespace mastermind.Tests
 
             Assert.Equal(expectedCount, sut.GuessDigitsRemaining.Count);
         }
+
+        [Theory]
+        [InlineData(0, "2134")]
+        [InlineData(0, "2222")]
+        [InlineData(2, "2222")]
+        [InlineData(1, "1234")]
+        [InlineData(2, "1324")]
+        [InlineData(3, "4312")]
+        public void AddToGuessDigits_Should_Add_Value_2_To_GuessDigitsRemaining_List(int index, string inputString)
+        {
+            sut.ConvertInputToStringArray(inputString);
+
+            sut.AddToGuessDigits(index);
+
+            Assert.Contains("2", sut.GuessDigitsRemaining);
+        }
     }
 }
