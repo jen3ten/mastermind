@@ -173,5 +173,11 @@ namespace mastermind
         {
             Console.WriteLine(CorrectPositionCount + CorrectDigitCount);
         }
+
+        public void ResetResult()
+        {
+            CorrectPositionCount = "";
+            CorrectDigitCount = "";
+        }
     }
 }

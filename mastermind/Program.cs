@@ -64,6 +64,7 @@ namespace mastermind
                         Console.WriteLine($"Too bad!  You didn't guess the answer in {game.MaximumGuesses} tries.");
                     }
                     guessNumber += 1;
+                    game.ResetResult();
                 }
             } while (continueGuessing);
 
