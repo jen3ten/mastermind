@@ -17,15 +17,56 @@ namespace mastermind
             Console.WriteLine("Enter exactly 4 digits for each guess. Do not include spaces or commas.");
             Console.WriteLine("\nGood Luck!\n");
 
+            // Initialize new game and generate random answer
             Game game = new Game();
             game.GenerateRandomAnswer();
 
+            // For developement only
+            Console.Write("Answer: ");
+            foreach(string digit in game.Answer)
+            {
+                Console.Write(digit);
+            }
+            Console.WriteLine();
+            Console.WriteLine();
+
             int guessNumber = 1;
+            bool continueGuessing = true;
+            // Ask for guesses until user wins or reaches maximum number of guesses
             do
             {
-                Console.Write($"Guess #{guessNumber}: ");
-                game.ConvertInputToStringArray(Console.ReadLine());
-            } while (!game.CheckValidityOfInput());
+                // Request valid guess from user
+                do
+                {
+                    Console.Write($"Guess #{guessNumber}: ");
+                    game.ConvertInputToStringArray(Console.ReadLine());
+                } while (!game.CheckValidityOfInput());
+
+                // Identify number of digits in correct position
+                game.CompareCorrectPosition();
+
+                // Display winning message if all digits are in correct position
+                if (game.WinningGuess())
+                {
+                    continueGuessing = false;
+                    Console.WriteLine($"Congratulations!  You guessed the answer in {guessNumber} tries!");
+                }
+                // If not a winning guess, identify number of digits that match answer and display result
+                else
+                {
+                    game.CompareCorrectDigit();
+                    game.DisplayResult();
+
+                    // Disply message and stop game if maximum number of guesses have been reached
+                    if(guessNumber >= game.MaximumGuesses)
+                    {
+                        continueGuessing = false;
+                        Console.WriteLine($"Too bad!  You didn't guess the answer in {game.MaximumGuesses} tries.");
+                    }
+                    guessNumber += 1;
+                }
+            } while (continueGuessing);
+
             Console.ReadKey();
         }
     }

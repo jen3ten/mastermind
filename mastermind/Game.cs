@@ -5,6 +5,7 @@ namespace mastermind
 {
     public class Game
     {
+        public int MaximumGuesses = 10;
         public string[] Answer { get; set; } = new string[4];
         public string[] Guess { get; set; }
         public string CorrectPositionCount { get; set; } = "";
