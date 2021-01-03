@@ -218,6 +218,14 @@ namespace mastermind.Tests
         }
 
         [Fact]
+        public void WinningGuess_Should_Return_True_If_Correct_Position_Count_Is_4()
+        {
+            sut.CorrectPositionCount = "++++";
+
+            Assert.True(sut.WinningGuess());
+        }
+
+        [Fact]
         public void AddToGuessDigits_Should_Add_Digit_To_GuessDigitsRemaining_List()
         {
             int index = 0;
