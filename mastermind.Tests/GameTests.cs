@@ -215,5 +215,16 @@ namespace mastermind.Tests
 
             Assert.All(sut.CorrectPositionCount, character => Assert.Equal('+', character));
         }
+
+        [Fact]
+        public void AddToGuessDigits_Should_Add_Digit_To_GuessDigitsRemaining_List()
+        {
+            int index = 0;
+            int expectedCount = sut.GuessDigitsRemaining.Count + 1;
+
+            sut.AddToGuessDigits(index);
+
+            Assert.Equal(expectedCount, sut.GuessDigitsRemaining.Count);
+        }
     }
 }
