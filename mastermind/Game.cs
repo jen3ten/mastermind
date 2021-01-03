@@ -167,5 +167,10 @@ namespace mastermind
                 }
             }
         }
+
+        public void DisplayResult()
+        {
+            Console.WriteLine(CorrectPositionCount + CorrectDigitCount);
+        }
     }
 }
