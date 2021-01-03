@@ -11,7 +11,6 @@ namespace mastermind.Tests
             sut = new Game();
         }
 
-
         // Answer Tests
         [Fact]
         public void Game_Can_Set_4_Digit_Answer_Property()
@@ -40,7 +39,7 @@ namespace mastermind.Tests
         [Fact]
         public void GetRandomDigit_Should_Return_Integer_Between_1_And_6()
         {
-            for(int i = 0; i < 50; i++)
+            for (int i = 0; i < 50; i++)
             {
                 int digit = sut.GetRandomDigit();
 
@@ -173,5 +172,20 @@ namespace mastermind.Tests
             Assert.False(sut.InputDigitsInRange());
         }
 
+        // Compare Correct Position Tests
+        [Theory]
+        [InlineData("1234", 0)]
+        [InlineData("1234", 1)]
+        [InlineData("1234", 2)]
+        [InlineData("1234", 3)]
+        [InlineData("1111", 0)]
+        [InlineData("4324", 3)]
+        public void MatchPositionInAnswer_Should_Return_True_If_Guess_Matches_Answer_At_Index(string guessString, int index)
+        {
+            sut.Answer = new string[] { "1", "2", "3", "4" };
+            sut.ConvertInputToStringArray(guessString);
+
+            Assert.True(sut.MatchPositionInAnswer(index));
+        }
     }
 }

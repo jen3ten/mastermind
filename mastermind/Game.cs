@@ -95,5 +95,10 @@ namespace mastermind
 
             return validity;
         }
+
+        public bool MatchPositionInAnswer(int index)
+        {
+            return false;
+        }
     }
 }
