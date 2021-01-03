@@ -394,5 +394,17 @@ namespace mastermind.Tests
             Assert.DoesNotContain("2", sut.AnswerDigitsRemaining);
         }
 
+        [Fact]
+        public void CompareCorrectDigit_Should_Add_4_Minus_Symbols_To_Correct_Digit_Count_And_Remove_All_From_Answer_Digit_List()
+        {
+            sut.GuessDigitsRemaining = new List<string>() { "1", "2", "3", "4" };
+            sut.AnswerDigitsRemaining = new List<string>() { "1", "2", "3", "4" };
+
+            sut.CompareCorrectDigit();
+
+            Assert.Equal("----", sut.CorrectDigitCount);
+            Assert.Empty(sut.AnswerDigitsRemaining);
+        }
+
     }
 }

@@ -110,11 +110,6 @@ namespace mastermind
             CorrectPositionCount += "+";
         }
 
-        public void IncreaseCorrectDigitCount()
-        {
-            CorrectDigitCount += "-";
-        }
-
         public void AddToGuessDigits(int index)
         {
             GuessDigitsRemaining.Add(Guess[index]);
@@ -146,9 +141,19 @@ namespace mastermind
             return AnswerDigitsRemaining.Contains(digit);
         }
 
+        public void IncreaseCorrectDigitCount()
+        {
+            CorrectDigitCount += "-";
+        }
+
         public void RemoveFromAnswerDigits(string digit)
         {
             AnswerDigitsRemaining.Remove(digit);
+        }
+
+        public void CompareCorrectDigit()
+        {
+
         }
     }
 }
