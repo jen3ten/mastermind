@@ -4,9 +4,8 @@ namespace mastermind
 {
     public class Game
     {
-        public int[] Answer { get; set; } = new int[4];
-        public int[] Guess { get; set; } = new int[4];
-        public string[] InputStringArray { get; set; }
+        public string[] Answer { get; set; } = new string[4];
+        public string[] Guess { get; set; }
 
 
         public int GetRandomDigit()
@@ -19,29 +18,29 @@ namespace mastermind
         {
             for(int i = 0; i < 4; i++)
             {
-                Answer[i] = GetRandomDigit();
+                Answer[i] = GetRandomDigit().ToString();
             }
         }
 
         public void ConvertInputToStringArray(string input)
         {
             char[] inputCharacterArray = input.ToCharArray();
-            InputStringArray = new string[input.Length];
+            Guess = new string[input.Length];
             for(int i = 0; i < input.Length; i++)
             {
-                InputStringArray[i] = inputCharacterArray[i].ToString();
+                Guess[i] = inputCharacterArray[i].ToString();
             }
         }
 
         public bool InputIs4Digits()
         {
-            return InputStringArray.Length == 4;
+            return Guess.Length == 4;
         }
 
         public bool InputDigitsAreIntegers()
         {
             int number;
-            foreach(string digit in InputStringArray)
+            foreach(string digit in Guess)
             {
                 if(Int32.TryParse(digit, out number) == false)
                 {
@@ -55,7 +54,7 @@ namespace mastermind
         {
             int number;
             bool success;
-            foreach (string digit in InputStringArray)
+            foreach (string digit in Guess)
             {
                 success = Int32.TryParse(digit, out number);
                 if (success && (number < 1 || number > 6))
