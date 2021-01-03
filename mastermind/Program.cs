@@ -39,7 +39,8 @@ namespace mastermind
                 // Request valid guess from user
                 do
                 {
-                    Console.Write($"Guess #{guessNumber}:\t");
+                    string guessPrompt = $"Guess #{guessNumber}:";
+                    Console.Write($"{guessPrompt, -12}");
                     game.ConvertInputToStringArray(Console.ReadLine());
                 } while (!game.CheckValidityOfInput());
 
@@ -58,7 +59,7 @@ namespace mastermind
                     game.CompareCorrectDigit();
                     game.DisplayResult();
 
-                    // Stop game if maximum number of guesses have been reached
+                    // Disply message and stop game if maximum number of guesses have been reached
                     if(guessNumber >= game.MaximumGuesses)
                     {
                         continueGuessing = false;
