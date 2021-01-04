@@ -12,20 +12,59 @@ namespace mastermind
             Console.WriteLine("Each digit is an integer between 1-6.");
             Console.WriteLine("Digits can be repeated.");
             Console.WriteLine("You will have 10 chances to guess the answer.");
-            Console.WriteLine("I will give you a - (minus) symbol for every digit that is correct, but in the wrong position.");
             Console.WriteLine("I will give you a + (plus) symbol for every digit that is correct and in the correct position.");
+            Console.WriteLine("I will give you a - (minus) symbol for every digit that is correct, but in the wrong position.");
             Console.WriteLine("Enter exactly 4 digits for each guess. Do not include spaces or commas.");
             Console.WriteLine("\nGood Luck!\n");
 
+            // Initialize new game and generate random answer
             Game game = new Game();
             game.GenerateRandomAnswer();
 
+            // For development only
+            // game.DisplayAnswer();
+
             int guessNumber = 1;
+            bool continueGuessing = true;
+
+            // Ask for guesses until user wins or reaches maximum number of guesses
             do
             {
-                Console.Write($"Guess #{guessNumber}: ");
-                game.ConvertInputToStringArray(Console.ReadLine());
-            } while (!game.CheckValidityOfInput());
+                // Request valid guess from user
+                do
+                {
+                    string guessPrompt = $"Guess #{guessNumber}:";
+                    Console.Write($"{guessPrompt, -12}");
+                    game.ConvertInputToStringArray(Console.ReadLine());
+                } while (!game.CheckValidityOfInput());
+
+                // Identify number of digits in correct position
+                game.CompareCorrectPosition();
+
+                // Display winning message if all digits are in correct position
+                if (game.WinningGuess())
+                {
+                    continueGuessing = false;
+                    Console.WriteLine($"Congratulations!  You guessed the answer in {guessNumber} tries!");
+                }
+                // If not a winning guess, identify number of digits that match answer and display result
+                else
+                {
+                    game.CompareCorrectDigit();
+                    game.DisplayResult();
+
+                    // Disply message and stop game if maximum number of guesses have been reached
+                    if(guessNumber >= game.MaximumGuesses)
+                    {
+                        continueGuessing = false;
+                        Console.WriteLine($"Too bad!  You didn't guess the answer in {game.MaximumGuesses} tries.");
+                        game.DisplayAnswer();
+                    }
+                    guessNumber += 1;
+                    game.ResetResult();
+                }
+            } while (continueGuessing);
+
             Console.ReadKey();
         }
     }

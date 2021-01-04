@@ -218,6 +218,27 @@ namespace mastermind.Tests
         }
 
         [Fact]
+        public void WinningGuess_Should_Return_True_If_Correct_Position_Count_Is_4()
+        {
+            sut.CorrectPositionCount = "++++";
+
+            Assert.True(sut.WinningGuess());
+        }
+
+        [Theory]
+        [InlineData("")]
+        [InlineData("+")]
+        [InlineData("++")]
+        [InlineData("+++")]
+        public void WinningGuess_Should_Return_False_If_Correct_Position_Count_Is_Less_Than_4(string positionCount)
+        {
+            sut.CorrectPositionCount = positionCount;
+
+            Assert.False(sut.WinningGuess());
+        }
+
+
+        [Fact]
         public void AddToGuessDigits_Should_Add_Digit_To_GuessDigitsRemaining_List()
         {
             int index = 0;
@@ -432,5 +453,56 @@ namespace mastermind.Tests
             Assert.Equal(initialCount - 2, sut.AnswerDigitsRemaining.Count);
         }
 
+        [Fact]
+        public void ResetResult_Resets_CorrectPositionCount()
+        {
+            sut.CorrectPositionCount = "++";
+            sut.CorrectDigitCount = "--";
+            sut.GuessDigitsRemaining = new List<string>() { "1", "2"};
+            sut.AnswerDigitsRemaining = new List<string>() { "2", "4" };
+
+            sut.ResetResult();
+
+            Assert.Empty(sut.CorrectPositionCount);
+        }
+
+        [Fact]
+        public void ResetResult_Resets_CorrectDigitCount()
+        {
+            sut.CorrectPositionCount = "++";
+            sut.CorrectDigitCount = "--";
+            sut.GuessDigitsRemaining = new List<string>() { "1", "2" };
+            sut.AnswerDigitsRemaining = new List<string>() { "2", "4" };
+
+            sut.ResetResult();
+
+            Assert.Empty(sut.CorrectDigitCount);
+        }
+
+        [Fact]
+        public void ResetResult_Resets_GuessDigitsRemaining()
+        {
+            sut.CorrectPositionCount = "++";
+            sut.CorrectDigitCount = "--";
+            sut.GuessDigitsRemaining = new List<string>() { "1", "2" };
+            sut.AnswerDigitsRemaining = new List<string>() { "2", "4" };
+
+            sut.ResetResult();
+
+            Assert.Empty(sut.GuessDigitsRemaining);
+        }
+
+        [Fact]
+        public void ResetResult_Resets_AnswerDigitsRemaining()
+        {
+            sut.CorrectPositionCount = "++";
+            sut.CorrectDigitCount = "--";
+            sut.GuessDigitsRemaining = new List<string>() { "1", "2" };
+            sut.AnswerDigitsRemaining = new List<string>() { "2", "4" };
+
+            sut.ResetResult();
+
+            Assert.Empty(sut.AnswerDigitsRemaining);
+        }
     }
 }

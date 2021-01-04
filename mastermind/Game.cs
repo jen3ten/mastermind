@@ -5,6 +5,7 @@ namespace mastermind
 {
     public class Game
     {
+        public int MaximumGuesses = 10;
         public string[] Answer { get; set; } = new string[4];
         public string[] Guess { get; set; }
         public string CorrectPositionCount { get; set; } = "";
@@ -136,6 +137,11 @@ namespace mastermind
             }
         }
 
+        public bool WinningGuess()
+        {
+            return CorrectPositionCount.Length == 4;
+        }
+
         public bool FindDigitInAnswer(string digit)
         {
             return AnswerDigitsRemaining.Contains(digit);
@@ -161,6 +167,29 @@ namespace mastermind
                     RemoveFromAnswerDigits(digit);
                 }
             }
+        }
+
+        public void DisplayResult()
+        {
+            Console.WriteLine($"{"Result:", -12}{CorrectPositionCount}{CorrectDigitCount}");
+        }
+
+        public void DisplayAnswer()
+        {
+            string answer = "";
+            foreach(string digit in Answer)
+            {
+                answer += digit;
+            }
+            Console.WriteLine($"{"Answer:", -12}{answer}");
+        }
+
+        public void ResetResult()
+        {
+            CorrectPositionCount = "";
+            CorrectDigitCount = "";
+            GuessDigitsRemaining.Clear();
+            AnswerDigitsRemaining.Clear();
         }
     }
 }
