@@ -47,7 +47,8 @@ namespace mastermind
                 if (game.WinningGuess())
                 {
                     continueGuessing = false;
-                    Console.WriteLine($"Congratulations!  You guessed the answer in {guessNumber} tries!");
+                    UserInterface.WinningMessage(guessNumber);
+                    //Console.WriteLine($"Congratulations!  You guessed the answer in {guessNumber} tries!");
                 }
                 // If not a winning guess, identify number of digits that match answer and display result
                 else

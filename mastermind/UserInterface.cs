@@ -26,5 +26,10 @@ namespace mastermind
             Console.Write($"{guessPrompt,-12}");
             return Console.ReadLine();
         }
+
+        public static void WinningMessage(int numberGuesses)
+        {
+            Console.WriteLine($"Congratulations!  You guessed the answer in {numberGuesses} tries!");
+        }
     }
 }
