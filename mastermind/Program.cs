@@ -33,9 +33,11 @@ namespace mastermind
                 // Request valid guess from user
                 do
                 {
-                    string guessPrompt = $"Guess #{guessNumber}:";
-                    Console.Write($"{guessPrompt, -12}");
-                    game.ConvertInputToStringArray(Console.ReadLine());
+                    //string guessPrompt = $"Guess #{guessNumber}:";
+                    //Console.Write($"{guessPrompt, -12}");
+                    //game.ConvertInputToStringArray(Console.ReadLine());
+                    string guess = UserInterface.ReadGuess(guessNumber);
+                    game.ConvertInputToStringArray(guess);
                 } while (!game.CheckValidityOfInput());
 
                 // Identify number of digits in correct position

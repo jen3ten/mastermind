@@ -19,5 +19,12 @@ namespace mastermind
             Console.WriteLine("Enter exactly 4 digits for each guess. Do not include spaces or commas.");
             Console.WriteLine("\nGood Luck!\n");
         }
+
+        public static string ReadGuess(int guessNumber)
+        {
+            string guessPrompt = $"Guess #{guessNumber}:";
+            Console.Write($"{guessPrompt,-12}");
+            return Console.ReadLine();
+        }
     }
 }
