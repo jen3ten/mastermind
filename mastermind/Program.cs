@@ -60,7 +60,8 @@ namespace mastermind
                     if(guessNumber >= game.MaximumGuesses)
                     {
                         continueGuessing = false;
-                        Console.WriteLine($"Too bad!  You didn't guess the answer in {game.MaximumGuesses} tries.");
+                        //Console.WriteLine($"Too bad!  You didn't guess the answer in {game.MaximumGuesses} tries.");
+                        UserInterface.LosingMessage(game.MaximumGuesses);
                         game.DisplayAnswer();
                     }
                     guessNumber += 1;

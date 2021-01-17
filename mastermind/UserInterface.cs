@@ -31,5 +31,11 @@ namespace mastermind
         {
             Console.WriteLine($"Congratulations!  You guessed the answer in {numberGuesses} tries!");
         }
+
+        public static void LosingMessage(int maximumGuesses)
+        {
+            Console.WriteLine($"Too bad!  You didn't guess the answer in {maximumGuesses} tries.");
+
+        }
     }
 }
