@@ -29,7 +29,7 @@ namespace mastermind
             }
 
             // For development only
-            game.DisplayAnswer();
+            // game.DisplayAnswer();
 
             int guessNumber = 1;
             bool continueGuessing = true;
