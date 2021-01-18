@@ -6,26 +6,32 @@ namespace mastermind
     public class Game
     {
         public int MaximumGuesses = 10;
-        public string[] Answer { get; set; } = new string[4];
+        //public string[] Answer { get; set; } = new string[4];
         public string[] Guess { get; set; }
         public string CorrectPositionCount { get; set; } = "";
         public string CorrectDigitCount { get; set; } = "";
         public List<string> GuessDigitsRemaining { get; set; } = new List<string>();
         public List<string> AnswerDigitsRemaining { get; set; } = new List<string>();
 
-        public int GetRandomDigit()
+        private readonly AnswerGenerator answerGenerator;
+        public Game()
         {
-            Random random = new Random();
-            return random.Next(1, 7);
+            answerGenerator = new AnswerGenerator();
         }
 
-        public void GenerateRandomAnswer()
-        {
-            for(int i = 0; i < 4; i++)
-            {
-                Answer[i] = GetRandomDigit().ToString();
-            }
-        }
+        //public int GetRandomDigit()
+        //{
+        //    Random random = new Random();
+        //    return random.Next(1, 7);
+        //}
+
+        //public void GenerateRandomAnswer()
+        //{
+        //    for(int i = 0; i < 4; i++)
+        //    {
+        //        Answer[i] = GetRandomDigit().ToString();
+        //    }
+        //}
 
         public void ConvertInputToStringArray(string input)
         {
@@ -103,7 +109,8 @@ namespace mastermind
 
         public bool MatchPositionInAnswer(int index)
         {
-            return Answer[index].Equals(Guess[index]);
+            return answerGenerator.Answer[index].Equals(Guess[index]);
+            // return false;
         }
 
         public void IncreaseCorrectPositionCount()
@@ -118,7 +125,7 @@ namespace mastermind
 
         public void AddToAnswerDigits(int index)
         {
-            AnswerDigitsRemaining.Add(Answer[index]);
+            AnswerDigitsRemaining.Add(answerGenerator.Answer[index]);
         }
 
         public void CompareCorrectPosition()
@@ -177,11 +184,11 @@ namespace mastermind
         public void DisplayAnswer()
         {
             string answer = "";
-            foreach(string digit in Answer)
+            foreach (string digit in answerGenerator.Answer)
             {
                 answer += digit;
             }
-            Console.WriteLine($"{"Answer:", -12}{answer}");
+            Console.WriteLine($"{"Answer:",-12}{answer}");
         }
 
         public void ResetResult()

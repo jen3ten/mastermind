@@ -9,10 +9,10 @@ namespace mastermind
             UserInterface.DisplayRules();
             // Initialize new game and generate random answer
             Game game = new Game();
-            game.GenerateRandomAnswer();
+            //game.GenerateRandomAnswer();
 
             // For development only
-            // game.DisplayAnswer();
+            game.DisplayAnswer();
 
             int guessNumber = 1;
             bool continueGuessing = true;
