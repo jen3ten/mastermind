@@ -8,21 +8,20 @@ namespace mastermind
         {
             UserInterface.DisplayRules();
 
-            // Initialize new game and generate random answer
-            Console.Write("How difficult do you want the game to be?  Please select a easy, medium, or hard: ");
-            string difficulty = Console.ReadLine();
+            // Set difficulty and initialize new game
+            string difficulty = UserInterface.SetDifficulty(); 
 
             Game game;
             switch (difficulty.ToLower())
             {
                 case "easy":
-                    game = new Game(new AnswerMedium());
+                    game = new Game(new AnswerEasy());
                     break;
                 case "medium":
                     game = new Game(new AnswerMedium());
                     break;
                 case "hard":
-                    game = new Game(new AnswerMedium());
+                    game = new Game(new AnswerHard());
                     break;
                 default:
                     game = new Game(new AnswerMedium());
