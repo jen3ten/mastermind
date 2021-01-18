@@ -9,7 +9,7 @@ namespace mastermind.Tests
         Game sut;
         public GameTests()
         {
-            sut = new Game();
+            sut = new Game(new AnswerMedium());
         }
 
         // Answer Tests

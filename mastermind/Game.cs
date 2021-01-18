@@ -5,7 +5,7 @@ namespace mastermind
 {
     public class Game
     {
-        public int MaximumGuesses = 10;
+        // public int MaximumGuesses = 10;
         //public string[] Answer { get; set; } = new string[4];
         public string[] Guess { get; set; }
         public string CorrectPositionCount { get; set; } = "";
@@ -13,10 +13,10 @@ namespace mastermind
         public List<string> GuessDigitsRemaining { get; set; } = new List<string>();
         public List<string> AnswerDigitsRemaining { get; set; } = new List<string>();
 
-        public readonly AnswerGenerator answerGenerator;
-        public Game()
+        public readonly IAnswerGenerator answerGenerator;
+        public Game(IAnswerGenerator answerGenerator)
         {
-            answerGenerator = new AnswerGenerator();
+            this.answerGenerator = answerGenerator;
         }
 
         //public int GetRandomDigit()

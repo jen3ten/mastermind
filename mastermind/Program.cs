@@ -7,8 +7,30 @@ namespace mastermind
         static void Main(string[] args)
         {
             UserInterface.DisplayRules();
+
             // Initialize new game and generate random answer
-            Game game = new Game();
+            Console.Write("How difficult do you want the game to be?  Please select a easy, medium, or hard: ");
+            string difficulty = Console.ReadLine();
+
+            Game game;
+            switch (difficulty.ToLower())
+            {
+                case "easy":
+                    game = new Game(new AnswerMedium());
+                    break;
+                case "medium":
+                    game = new Game(new AnswerMedium());
+                    break;
+                case "hard":
+                    game = new Game(new AnswerMedium());
+                    break;
+                default:
+                    game = new Game(new AnswerMedium());
+                    break;
+            }
+
+
+            // Game game = new Game();
             //game.GenerateRandomAnswer();
 
             // For development only
@@ -43,10 +65,10 @@ namespace mastermind
                     game.DisplayResult();
 
                     // Display message and stop game if maximum number of guesses have been reached
-                    if(guessNumber >= game.MaximumGuesses)
+                    if(guessNumber >= game.answerGenerator.MaximumGuesses)
                     {
                         continueGuessing = false;
-                        UserInterface.LosingMessage(game.MaximumGuesses);
+                        UserInterface.LosingMessage(game.answerGenerator.MaximumGuesses);
                         game.DisplayAnswer();
                     }
                     guessNumber += 1;

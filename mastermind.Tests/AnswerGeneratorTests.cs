@@ -7,11 +7,11 @@ namespace mastermind.Tests
 {
     public class AnswerGeneratorTests
     {
-        AnswerGenerator sut;
+        IAnswerGenerator sut;
 
         public AnswerGeneratorTests()
         {
-            sut = new AnswerGenerator();
+            sut = new AnswerMedium();
         }
 
         [Fact]

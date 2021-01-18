@@ -4,23 +4,24 @@ using System.Text;
 
 namespace mastermind
 {
-    public class AnswerGenerator
+    public class AnswerMedium : IAnswerGenerator
     {
-        public string[] Answer { get; set; } 
-        public int NumberDigits { get; set; }
+        public string[] Answer { get; set; } = new string[4];
+        public int NumberDigits { get; set; } = 4;
+        public int MaximumGuesses { get; set; }  = 10;
 
-        public AnswerGenerator()
+        public AnswerMedium()
         {
-            SetAnswerSize();
+            //SetAnswerSize();
             GetRandomDigit();
             GenerateRandomAnswer();
         }
 
         public void SetAnswerSize()
         {
-            Console.Write("How difficult do you want the game to be?  Please select a 4, 5, or 6 digit answer: ");
-            NumberDigits = Convert.ToInt32(Console.ReadLine());
-            Answer = new string[NumberDigits];
+            //Console.Write("How difficult do you want the game to be?  Please select a 4, 5, or 6 digit answer: ");
+            //NumberDigits = Convert.ToInt32(Console.ReadLine());
+            //Answer = new string[NumberDigits];
         }
         public int GetRandomDigit()
         {
