@@ -28,10 +28,6 @@ namespace mastermind
                     break;
             }
 
-
-            // Game game = new Game();
-            //game.GenerateRandomAnswer();
-
             // For development only
             game.DisplayAnswer();
 

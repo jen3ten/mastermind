@@ -10,7 +10,6 @@ namespace mastermind
         public int NumberDigits { get; set; }
         public int MaximumGuesses { get; set; }
 
-        void SetAnswerSize();
         public int GetRandomDigit();
         public void GenerateRandomAnswer();
 
