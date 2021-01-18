@@ -13,7 +13,7 @@ namespace mastermind
         public List<string> GuessDigitsRemaining { get; set; } = new List<string>();
         public List<string> AnswerDigitsRemaining { get; set; } = new List<string>();
 
-        private readonly AnswerGenerator answerGenerator;
+        public readonly AnswerGenerator answerGenerator;
         public Game()
         {
             answerGenerator = new AnswerGenerator();
@@ -43,9 +43,9 @@ namespace mastermind
             }
         }
 
-        public bool InputIs4Digits()
+        public bool InputDigitCountCorrect()
         {
-            return Guess.Length == 4;
+            return Guess.Length == answerGenerator.NumberDigits;
         }
 
         public bool InputDigitsAreIntegers()
@@ -81,9 +81,9 @@ namespace mastermind
             string message = "";
             bool validity = true;
 
-            if (!InputIs4Digits())
+            if (!InputDigitCountCorrect())
             {
-                message += "The input does not contain exactly 4 digits. ";
+                message += $"The input does not contain exactly {answerGenerator.NumberDigits} digits. ";
                 validity = false;
             }
 
@@ -130,7 +130,7 @@ namespace mastermind
 
         public void CompareCorrectPosition()
         {
-            for(int index = 0; index < 4; index++)
+            for(int index = 0; index < answerGenerator.NumberDigits; index++)
             {
                 if (MatchPositionInAnswer(index))
                 {
@@ -146,7 +146,7 @@ namespace mastermind
 
         public bool WinningGuess()
         {
-            return CorrectPositionCount.Length == 4;
+            return CorrectPositionCount.Length == answerGenerator.NumberDigits;
         }
 
         public bool FindDigitInAnswer(string digit)

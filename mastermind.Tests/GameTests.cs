@@ -105,7 +105,7 @@ namespace mastermind.Tests
         {
             sut.ConvertInputToStringArray(input);
 
-            Assert.True(sut.InputIs4Digits());
+            Assert.True(sut.InputDigitCountCorrect());
         }
 
         [Theory]
@@ -117,7 +117,7 @@ namespace mastermind.Tests
         {
             sut.ConvertInputToStringArray(input);
 
-            Assert.False(sut.InputIs4Digits());
+            Assert.False(sut.InputDigitCountCorrect());
         }
 
         [Theory]
